@@ -11,11 +11,12 @@ use HTTP::Date;
 use Cwd ();
 use File::Spec::Functions;
 use File::chdir;
-use Symbol qw/gensym/;
+use File::Which qw(which);
+use Symbol qw(gensym);
 use IPC::Open3;
 use IO::Select;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my @SERVICES = (
     [ 'POST', 'service_rpc', qr{(.*?)/git-upload-pack$},  'upload-pack' ],
@@ -32,6 +33,20 @@ my @SERVICES = (
     ],
     [ 'GET', 'get_idx_file', qr{(.*?)/objects/pack/pack-[0-9a-f]{40}\.idx$} ],
 );
+
+sub prepare_app {
+    my $self = shift;
+    unless ( $self->git_path ) {
+        my $git_path = which('git');
+        unless ($git_path) {
+            die 'could not find git';
+        }
+        $self->git_path($git_path);
+    }
+    unless ( -x $self->git_path ) {
+        die 'git_path is not executable [' . $self->git_path . ']';
+    }
+}
 
 sub call {
     my $self = shift;
@@ -239,7 +254,7 @@ sub update_server_info {
 sub git_command {
     my $self     = shift;
     my @commands = @_;
-    my $git_bin  = $self->git_path || 'git';
+    my $git_bin  = $self->git_path;
     return ( $git_bin, @commands );
 }
 
@@ -345,7 +360,7 @@ __END__
 
 =head1 NAME
 
-  Plack::App::GitSmartHttp
+  Plack::App::GitSmartHttp - Git Smart HTTP Server PSGI(Plack) Implementation
 
 =head1 SYNOPSIS
 

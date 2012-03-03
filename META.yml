@@ -21,6 +21,7 @@ no_index:
 requires:
   Cwd: 0
   File::Spec: 0
+  File::Which: 0
   File::chdir: 0
   HTTP::Date: 0
   IPC::Open3: 0
@@ -29,4 +30,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/dragon3/Plack-App-GitSmartHttp.git
-version: 0.01
+version: 0.02
