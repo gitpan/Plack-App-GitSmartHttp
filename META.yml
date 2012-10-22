@@ -25,11 +25,11 @@ requires:
   File::Which: 0
   File::chdir: 0
   HTTP::Date: 0
-  IO::Uncompress::Gunzip: 0
+  IO::Uncompress::Gunzip: 2.055
   IPC::Open3: 0
   Plack: 0
   parent: 0
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/dragon3/Plack-App-GitSmartHttp.git
-version: 0.03
+version: 0.04
