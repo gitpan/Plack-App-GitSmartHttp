@@ -4,10 +4,11 @@ author:
   - 'Ryuzo Yamamoto <ryuzo.yamamoto@gmail.com>'
 build_requires:
   ExtUtils::MakeMaker: '6.36'
+  File::Copy::Recursive: '0'
 configure_requires:
   Module::Build: '0.38'
 dynamic_config: 0
-generated_by: 'Minilla/v2.2.0, CPAN::Meta::Converter version 2.142690'
+generated_by: 'Minilla/v2.2.1, CPAN::Meta::Converter version 2.142690'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -26,7 +27,7 @@ no_index:
 provides:
   Plack::App::GitSmartHttp:
     file: lib/Plack/App/GitSmartHttp.pm
-    version: '0.06'
+    version: '0.07'
 requires:
   Cwd: '0'
   File::Spec: '0'
@@ -41,4 +42,4 @@ resources:
   bugtracker: https://github.com/dragon3/Plack-App-GitSmartHttp/issues
   homepage: https://github.com/dragon3/Plack-App-GitSmartHttp
   repository: git://github.com/dragon3/Plack-App-GitSmartHttp.git
-version: '0.06'
+version: '0.07'
